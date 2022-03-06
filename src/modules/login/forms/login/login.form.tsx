@@ -15,7 +15,7 @@ export function LoginForm() {
     },
   });
 
-  const [seePassword, setSeePassword] = React.useState(false);
+  const [seePassword, setSeePassword] = React.useState(true);
   const toggleSeePassword = () => {
     setSeePassword(!seePassword);
   };
