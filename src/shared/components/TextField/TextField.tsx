@@ -7,44 +7,114 @@ import {
   View,
   ViewStyle,
 } from 'react-native';
+import {DarkTheme} from '../../../theme';
+import {useTheme} from '@react-navigation/native';
 
 interface TextFieldProps extends TextInputProps {
   label: string;
   labelStyle?: ViewStyle;
   error?: string;
+  startIcon?: React.ReactNode;
+  endIcon?: React.ReactNode;
 }
 
 export function TextField({
   label,
   labelStyle,
   error,
+  startIcon,
+  endIcon,
   ...props
 }: TextFieldProps) {
+  const {colors} = useTheme();
   return (
-    <View>
-      <View style={labelStyle || styles.label}>
-        <Text>{label}</Text>
+    <View style={TextFieldStyles.TextField}>
+      <View style={labelStyle || TextFieldStyles.label}>
+        <Text
+          style={{color: error ? TextFieldStyles.error.color : colors.text}}>
+          {label}
+        </Text>
       </View>
-      <View style={styles.input}>
-        <TextInput {...props} />
+      <View
+        style={[
+          TextFieldStyles.inputView,
+          {...(error && TextFieldStyles.error)},
+        ]}>
+        {startIcon && (
+          <Text
+            style={[
+              TextFieldStyles.icon,
+              {color: error ? TextFieldStyles.error.color : colors.text},
+            ]}>
+            {startIcon}
+          </Text>
+        )}
+        <TextInput
+          style={[
+            TextFieldStyles.input,
+            {
+              color: error ? TextFieldStyles.error.color : colors.text,
+            },
+          ]}
+          {...props}
+        />
+        {endIcon && (
+          <Text
+            style={[
+              TextFieldStyles.icon,
+              {
+                color: error ? TextFieldStyles.error.color : colors.text,
+              },
+            ]}>
+            {endIcon}
+          </Text>
+        )}
       </View>
+      {error && (
+        <View>
+          <Text style={[TextFieldStyles.error, TextFieldStyles.errorText]}>
+            {error}
+          </Text>
+        </View>
+      )}
     </View>
   );
 }
 
-const styles = StyleSheet.create({
+const TextFieldStyles = StyleSheet.create({
+  TextField: {
+    paddingHorizontal: 16,
+    paddingVertical: 8,
+  },
   label: {
-    padding: 10,
-    color: '#000',
+    color: '#fff',
     fontSize: 16,
     fontWeight: 'bold',
+    marginBottom: 8,
   },
-  input: {
+  inputView: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
     borderWidth: 1,
     borderRadius: 8,
-    borderColor: '#000',
-    padding: 10,
-    marginBottom: 10,
-    marginHorizontal: 10,
+    borderColor: DarkTheme.colors.border,
+    color: DarkTheme.colors.text,
+    padding: 8,
+  },
+  input: {
+    flex: 1,
+    fontSize: 16,
+  },
+  icon: {
+    justifyContent: 'flex-end',
+    marginHorizontal: 8,
+    width: '10%',
+  },
+  error: {
+    color: '#e00101',
+    borderColor: '#e00101',
+  },
+  errorText: {
+    marginVertical: 8,
   },
 });

@@ -1,11 +1,13 @@
-import {ThemeColorsProps} from '../colors.type';
+import {Theme} from '@react-navigation/native/src/types';
 
-export const DarkTheme: ThemeColorsProps = {
-  background: '#1e1e1e',
-  text: '#ffffff',
-  primary: '#689fb2',
-  buttonPrimary: {
-    background: '#689fb2',
-    color: '#fff',
+export const DarkTheme: Theme = {
+  dark: true,
+  colors: {
+    background: '#2d323b',
+    card: '#1E1F28',
+    text: '#aeb4c0',
+    border: '#b78c3f',
+    notification: '#F9971F',
+    primary: '#88939c',
   },
 };
