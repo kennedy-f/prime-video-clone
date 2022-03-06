@@ -1,11 +1,6 @@
 import React from 'react';
-import {SafeAreaView} from 'react-native';
-import {UIButton} from './src/shared/components';
+import {MainApplication} from './src/mainApplication';
 
 export function App() {
-  return (
-    <SafeAreaView>
-      <UIButton title={' teste'} onPress={() => console.log(' click me ')} />
-    </SafeAreaView>
-  );
+  return <MainApplication />;
 }
