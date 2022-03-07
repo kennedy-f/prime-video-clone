@@ -4,13 +4,13 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
 import {HomeScreen} from '../screens/home';
 import {LoginScreen} from '../screens/login';
-import {DarkTheme} from '../theme';
+import {DarkApplicationTheme} from '../theme';
 
 const Stack = createNativeStackNavigator();
 
 export default function Navigation() {
   return (
-    <NavigationContainer theme={DarkTheme}>
+    <NavigationContainer theme={DarkApplicationTheme}>
       <Stack.Navigator>
         <Stack.Screen
           name="Login"

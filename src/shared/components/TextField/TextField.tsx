@@ -7,8 +7,9 @@ import {
   View,
   ViewStyle,
 } from 'react-native';
-import {DarkTheme} from '../../../theme';
+
 import {useTheme} from '@react-navigation/native';
+import {DarkApplicationTheme} from "../../../theme";
 
 interface TextFieldProps extends TextInputProps {
   label: string;
@@ -97,8 +98,8 @@ const TextFieldStyles = StyleSheet.create({
     justifyContent: 'space-between',
     borderWidth: 1,
     borderRadius: 8,
-    borderColor: DarkTheme.colors.border,
-    color: DarkTheme.colors.text,
+    borderColor: DarkApplicationTheme.colors.border,
+    color: DarkApplicationTheme.colors.text,
     padding: 8,
   },
   input: {
