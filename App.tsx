@@ -1,6 +1,6 @@
 import React from 'react';
-import {MainApplication} from './src/mainApplication';
+import Navigation from './src/navigation/navigator';
 
 export function App() {
-  return <MainApplication />;
+  return <Navigation />;
 }

@@ -1,6 +1,6 @@
 import React from 'react';
 import {TextField} from '../../../../shared/components/TextField';
-import {TouchableOpacity} from 'react-native';
+import {StyleSheet, TouchableOpacity, View} from 'react-native';
 import {UIButton} from '../../../../shared';
 import {useFormik} from 'formik';
 import * as yup from 'yup';
@@ -42,7 +42,7 @@ export function LoginForm(props: LoginFormProps) {
   const {colors} = useTheme();
 
   return (
-    <>
+    <View style={LoginFormStyles.container}>
       <TextField
         label={'Email'}
         value={values.email}
@@ -51,6 +51,7 @@ export function LoginForm(props: LoginFormProps) {
         keyboardType={'email-address'}
         textContentType={'emailAddress'}
         onBlur={handleBlur('email')}
+        autoCapitalize={'none'}
         error={touched.email ? errors.email : undefined}
       />
       <TextField
@@ -72,7 +73,26 @@ export function LoginForm(props: LoginFormProps) {
           </TouchableOpacity>
         }
       />
-      <UIButton onPress={handleSubmit} title={'Fazer login'} />
-    </>
+      <View
+        style={{
+          alignItems: 'center',
+          flexDirection: 'row',
+        }}>
+        <View style={LoginFormStyles.buttonContainer}>
+          <UIButton onPress={handleSubmit} variant={'primary'}>
+            Login
+          </UIButton>
+        </View>
+      </View>
+    </View>
   );
 }
+
+const LoginFormStyles = StyleSheet.create({
+  container: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    overflow: 'hidden',
+  },
+  buttonContainer: {flex: 1, paddingHorizontal: 16, marginTop: 16},
+});

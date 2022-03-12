@@ -9,7 +9,7 @@ import {
 } from 'react-native';
 
 import {useTheme} from '@react-navigation/native';
-import {DarkApplicationTheme} from "../../../theme";
+import {DarkApplicationTheme} from '../../../theme';
 
 interface TextFieldProps extends TextInputProps {
   label: string;
@@ -86,6 +86,7 @@ const TextFieldStyles = StyleSheet.create({
   TextField: {
     paddingHorizontal: 16,
     paddingVertical: 8,
+    width: '100%',
   },
   label: {
     color: '#fff',
@@ -112,8 +113,8 @@ const TextFieldStyles = StyleSheet.create({
     width: '10%',
   },
   error: {
-    color: '#e00101',
-    borderColor: '#e00101',
+    color: '#f33737',
+    borderColor: '#f33737',
   },
   errorText: {
     marginVertical: 8,

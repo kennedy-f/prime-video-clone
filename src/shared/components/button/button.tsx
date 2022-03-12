@@ -1,32 +1,36 @@
 import React from 'react';
-import {Button, ButtonProps, TouchableOpacity, View} from 'react-native';
+import {Pressable, PressableProps, Text, View} from 'react-native';
 
 import {ButtonStyle} from './button.style';
 
-type DefaultButtonProps = Omit<ButtonProps, 'title'> & {
+type DefaultButtonProps = Omit<PressableProps, 'title'> & {
   title?: string;
   children?: React.ReactFragment;
   width?: number;
   height?: number;
+  variant?: 'primary' | 'default';
 };
 
-type UIButtonProps = DefaultButtonProps;
+export function UIButton({
+  children,
+  variant = 'default',
+  ...props
+}: DefaultButtonProps) {
+  const buttonStyles =
+    variant === 'default' ? ButtonStyle.default : ButtonStyle.primary;
 
-export function UIButton({title, children, ...props}: UIButtonProps) {
   return (
-    <View
+    <Pressable
+      onPress={props.onPress}
       style={[
-        ButtonStyle.button,
+        ButtonStyle.baseButton,
         {
-          width: props.width || '80%',
+          width: props.width || '100%',
           height: props.height || 40,
         },
+        buttonStyles,
       ]}>
-      {children ? (
-        <TouchableOpacity>{children}</TouchableOpacity>
-      ) : (
-        <Button color={ButtonStyle.button.color} title={title || ''} {...props} />
-      )}
-    </View>
+      <Text style={{color: buttonStyles.color}}>{children}</Text>
+    </Pressable>
   );
 }

@@ -1,24 +1,25 @@
 import * as React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
-import {HomeScreen} from '../screens/home';
-import {LoginScreen} from '../screens/login';
+import {HomeScreen} from '../screens';
+
 import {DarkApplicationTheme} from '../theme';
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import {AuthenticationNavigator} from './AuthenticationNavigator/Authentication.navigator';
 
-const Stack = createNativeStackNavigator();
+const Tab = createBottomTabNavigator();
 
 export default function Navigation() {
+  const isLogged = false;
   return (
     <NavigationContainer theme={DarkApplicationTheme}>
-      <Stack.Navigator>
-        <Stack.Screen
-          name="Login"
-          component={LoginScreen}
-          options={{headerShown: false}}
-        />
-        <Stack.Screen name="Home" component={HomeScreen} />
-      </Stack.Navigator>
+      {isLogged ? (
+        <Tab.Navigator>
+          <Tab.Screen name="Home" component={HomeScreen} />
+        </Tab.Navigator>
+      ) : (
+        <AuthenticationNavigator />
+      )}
     </NavigationContainer>
   );
 }

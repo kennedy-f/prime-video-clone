@@ -5,5 +5,9 @@ export interface ThemedProps {
   border: string;
   notification: string;
   primary: string;
-  button: {primary: {backgroundColor: string}};
+  button: {
+    primary: {
+      backgroundColor: string;
+    };
+  };
 }
