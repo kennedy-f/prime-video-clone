@@ -24,9 +24,19 @@ const styles = StyleSheet.create({
   },
 });
 
+const localLogin = {
+  email: 'teste@app.com',
+  password: 'teste@app',
+};
+
 export function LoginScreen() {
   const handleLogin = (login: LoginData) => {
-    console.log(login);
+    if (
+      login.email === localLogin.email &&
+      login.password === localLogin.password
+    ) {
+      return true;
+    }
   };
   const IOS = Platform.OS === 'ios';
 
