@@ -7,11 +7,20 @@ import {DarkApplicationTheme} from '../theme';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {AuthenticationNavigator} from './AuthenticationNavigator/Authentication.navigator';
 import {StatusBar} from 'react-native';
+import {useEffect} from 'react';
+import {useDispatch} from 'react-redux';
+import {initializeAuth} from '../store/modules/auth';
 
 const Tab = createBottomTabNavigator();
 
 export default function Navigation() {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(initializeAuth());
+  }, []);
+
   const isLogged = false;
+
   return (
     <>
       <StatusBar barStyle="light-content" />
