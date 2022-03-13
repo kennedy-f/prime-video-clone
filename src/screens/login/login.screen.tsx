@@ -1,28 +1,24 @@
 import React from 'react';
-import {
-  KeyboardAvoidingView,
-  Platform,
-  SafeAreaView,
-  StyleSheet,
-  Text,
-  View,
-} from 'react-native';
+import {StyleSheet, Text, View} from 'react-native';
 
 import {LoginData} from '../../services';
 import {LoginForm} from '../../modules/Authentication';
-import {useAppDispatch, useAppSelector} from '../../store/hook';
-import {makeLogin, selectHasToken} from '../../store/modules/auth';
+import {useAppDispatch} from '../../store/hook';
+import {makeLogin} from '../../store/modules/auth';
+import {AppContainer} from '../../shared/components/AppContainer';
+import {BackButton} from '../../shared/components/button/BackButton/BackButton';
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
   title: {
-    fontSize: 36,
+    fontSize: 20,
     fontWeight: 'bold',
     color: '#fff',
     textAlign: 'center',
     paddingBottom: 32,
+  },
+  container: {
+    flex: 1,
+    justifyContent: 'center',
   },
 });
 
@@ -41,27 +37,18 @@ export function LoginScreen() {
       dispatch(makeLogin('logged'));
     }
   };
-  const IOS = Platform.OS === 'ios';
-
-  const token = useAppSelector(selectHasToken);
-  console.log(token);
 
   return (
-    <SafeAreaView style={styles.container}>
-      <KeyboardAvoidingView
-        behavior={IOS ? 'padding' : undefined}
-        style={[styles.container, {justifyContent: 'center'}]}>
-        {token ? (
-          <Text style={styles.title}>Logado com sucesso!</Text>
-        ) : (
-          <>
-            <View>
-              <Text style={styles.title}> Prime video</Text>
-            </View>
-            <LoginForm onComplete={handleLogin} />
-          </>
-        )}
-      </KeyboardAvoidingView>
-    </SafeAreaView>
+    <AppContainer>
+      <BackButton />
+      <View style={styles.container}>
+        <>
+          <View>
+            <Text style={styles.title}> Prime video</Text>
+          </View>
+          <LoginForm onComplete={handleLogin} />
+        </>
+      </View>
+    </AppContainer>
   );
 }

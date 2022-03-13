@@ -1,9 +1,15 @@
 import React from 'react';
-import {Pressable, PressableProps, Text, View} from 'react-native';
+import {
+  Pressable,
+  PressableProps,
+  StyleProp,
+  Text,
+  ViewStyle,
+} from 'react-native';
 
 import {ButtonStyle} from './button.style';
 
-type DefaultButtonProps = Omit<PressableProps, 'title'> & {
+type DefaultButtonProps = PressableProps & {
   title?: string;
   children?: React.ReactFragment;
   width?: number;
@@ -19,17 +25,17 @@ export function UIButton({
   const buttonStyles =
     variant === 'default' ? ButtonStyle.default : ButtonStyle.primary;
 
+  const mergeStyles: StyleProp<ViewStyle> = [
+    ButtonStyle.baseButton,
+    {
+      width: props.width || '100%',
+      height: props.height || 40,
+    },
+    buttonStyles,
+  ];
+
   return (
-    <Pressable
-      onPress={props.onPress}
-      style={[
-        ButtonStyle.baseButton,
-        {
-          width: props.width || '100%',
-          height: props.height || 40,
-        },
-        buttonStyles,
-      ]}>
+    <Pressable onPress={props.onPress} style={mergeStyles} {...props}>
       <Text style={{color: buttonStyles.color}}>{children}</Text>
     </Pressable>
   );
