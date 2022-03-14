@@ -2,14 +2,14 @@ import * as React from 'react';
 import {useEffect} from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 
-import {HomeScreen} from '../screens';
-
 import {DarkApplicationTheme} from '../theme';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {AuthenticationNavigator} from './AuthenticationNavigator/Authentication.navigator';
 import {StatusBar} from 'react-native';
 import {useDispatch} from 'react-redux';
-import {initializeAuth} from '../store/modules/auth';
+import {initializeAuth, selectHasToken} from '../store/modules/auth';
+import {useAppSelector} from '../store/hook';
+import {CatalogScreen} from '../screens/catalog';
 
 const Tab = createBottomTabNavigator();
 
@@ -20,7 +20,7 @@ export default function Navigation() {
     dispatch(initializeAuth());
   });
 
-  const isLogged = false;
+  const isLogged = useAppSelector(selectHasToken);
 
   return (
     <>
@@ -28,7 +28,7 @@ export default function Navigation() {
       <NavigationContainer theme={DarkApplicationTheme}>
         {isLogged ? (
           <Tab.Navigator>
-            <Tab.Screen name="Home" component={HomeScreen} />
+            <Tab.Screen name="Home" component={CatalogScreen} />
           </Tab.Navigator>
         ) : (
           <AuthenticationNavigator />
