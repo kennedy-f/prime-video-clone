@@ -17,6 +17,12 @@ const styles = StyleSheet.create({
     borderRadius: 100 * 0.1,
     overflow: 'hidden',
   },
+  movieContainerPressed: {
+    position: 'absolute',
+    zIndex: 1,
+    width: MOVIE_WIDTH,
+    height: 100,
+  },
   movieImage: {
     width: MOVIE_WIDTH,
     height: 100,
@@ -62,23 +68,23 @@ export function MovieCard({movieData, index, x}: MovieCardProps) {
     extrapolate: 'clamp',
   });
 
-  const [longPressed, setLongPressed] = useState(false);
-  const handleLongPress = () => {
-    setLongPressed(true);
+  const [isPressed, setIsPressed] = useState(false);
+  const handlePress = () => {
+    setIsPressed(true);
   };
 
   const handlePressOut = () => {
-    setLongPressed(false);
+    setIsPressed(false);
   };
 
   return (
     <Animated.View style={{transform: [{scale}]}}>
       <Pressable
-        onLongPress={handleLongPress}
+        onLongPress={handlePress}
         onPressOut={handlePressOut}
         style={styles.movieContainer}>
-        {longPressed ? (
-          <>
+        {isPressed && (
+          <View style={styles.movieContainerPressed}>
             <View style={styles.movieData}>
               <Text style={styles.movieContent}>{movieData.title}</Text>
               <Text style={styles.movieContent}> {movieData.id}</Text>
@@ -88,12 +94,9 @@ export function MovieCard({movieData, index, x}: MovieCardProps) {
               style={styles.movieImagePressed}
               blurRadius={2}
             />
-          </>
-        ) : (
-          <>
-            <Image source={{uri: movieData.img}} style={styles.movieImage} />
-          </>
+          </View>
         )}
+        <Image source={{uri: movieData.img}} style={styles.movieImage} />
       </Pressable>
     </Animated.View>
   );
