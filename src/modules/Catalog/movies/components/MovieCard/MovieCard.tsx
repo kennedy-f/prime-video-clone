@@ -1,6 +1,15 @@
 import React, {useState} from 'react';
-import {Animated, Image, Pressable, StyleSheet, Text, View} from 'react-native';
+import {
+  Animated,
+  Dimensions,
+  Image,
+  Pressable,
+  StyleSheet,
+  Text,
+  View,
+} from 'react-native';
 import {TempMovie} from '../slider';
+import {MovieOptionsModal} from '../modals/MovieOptionsModal';
 
 const MOVIE_WIDTH = 150;
 const MARGIN_HORIZONTAL = 5;
@@ -54,9 +63,10 @@ interface MovieCardProps {
   movieData: TempMovie;
   x: Animated.Value;
   index: number;
+  onLongPress: (data: TempMovie) => void;
 }
 
-export function MovieCard({movieData, index, x}: MovieCardProps) {
+export function MovieCard({movieData, index, x, onLongPress}: MovieCardProps) {
   const scale = x.interpolate({
     inputRange: [
       -100,
@@ -77,11 +87,16 @@ export function MovieCard({movieData, index, x}: MovieCardProps) {
     setIsPressed(false);
   };
 
+  const handleLongPress = () => {
+    onLongPress(movieData);
+  };
+
   return (
     <Animated.View style={{transform: [{scale}]}}>
       <Pressable
-        onLongPress={handlePress}
+        onPressIn={handlePress}
         onPressOut={handlePressOut}
+        onLongPress={handleLongPress}
         style={styles.movieContainer}>
         {isPressed && (
           <View style={styles.movieContainerPressed}>

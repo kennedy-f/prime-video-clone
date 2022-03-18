@@ -14,7 +14,7 @@ const LoginFormSchema = yup.object().shape({
   password: yup.string().required(),
 });
 
-interface LoginData {
+export interface LoginData {
   email: string;
   password: string;
 }

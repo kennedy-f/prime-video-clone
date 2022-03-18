@@ -25,9 +25,9 @@ export const authSlice = createSlice({
       AsyncStorage.setItem(authorization_token, action.payload);
       state.token = action.payload;
     },
-    makeLogout: (state, action: PayloadAction<string>) => {
+    makeLogout: state => {
       AsyncStorage.removeItem(authorization_token);
-      state.token = action.payload;
+      state.token = null;
     },
   },
   extraReducers: builder => {

@@ -1,8 +1,7 @@
 import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 
-import {LoginData} from '../../services';
-import {LoginForm} from '../../modules/Authentication';
+import {LoginData, LoginForm} from '../../modules/Authentication';
 import {useAppDispatch} from '../../store/hook';
 import {makeLogin} from '../../store/modules/auth';
 import {AppContainer} from '../../shared/components/AppContainer';

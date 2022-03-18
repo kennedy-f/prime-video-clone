@@ -1,6 +1,7 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {Animated, StyleSheet, Text, View} from 'react-native';
-import {MovieCard} from '../MovieCard/MovieCard';
+import {MovieCard} from '../MovieCard';
+import {MovieOptionsModal} from '../modals/MovieOptionsModal';
 
 export interface TempMovie {
   id: number;
@@ -29,6 +30,16 @@ export function MovieSlider({data, category}: MovieSliderProps) {
     useNativeDriver: true,
   });
 
+  const [modalMovie, setModalMovie] = useState<TempMovie>();
+
+  const handleOptionOpen = (movie: TempMovie) => {
+    setModalMovie(movie);
+  };
+
+  const handleOptionsClose = () => {
+    setModalMovie(undefined);
+  };
+
   return (
     <View>
       <Text style={styles.categoryTitle}> {category} </Text>
@@ -39,10 +50,21 @@ export function MovieSlider({data, category}: MovieSliderProps) {
         keyExtractor={item => String(item.id)}
         showsHorizontalScrollIndicator={false}
         renderItem={({index, item}) => (
-          <MovieCard movieData={item as TempMovie} {...{index, x}} />
+          <MovieCard
+            movieData={item as TempMovie}
+            {...{index, x}}
+            onLongPress={handleOptionOpen}
+          />
         )}
         {...{onScroll, x}}
       />
+      {modalMovie && (
+        <MovieOptionsModal
+          movie={modalMovie}
+          open={!!modalMovie}
+          onClose={handleOptionsClose}
+        />
+      )}
     </View>
   );
 }

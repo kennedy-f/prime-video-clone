@@ -1,6 +1,6 @@
 import React from 'react';
 import {View} from 'react-native';
-import {MovieSlider} from '../../modules/Catalog/movies/slider';
+import {MovieSlider} from '../../modules/Catalog';
 
 interface TempMovie {
   id: number;

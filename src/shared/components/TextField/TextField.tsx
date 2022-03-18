@@ -17,6 +17,7 @@ interface TextFieldProps extends TextInputProps {
   error?: string;
   startIcon?: React.ReactNode;
   endIcon?: React.ReactNode;
+  noLabel?: boolean;
 }
 
 export function TextField({
@@ -25,16 +26,19 @@ export function TextField({
   error,
   startIcon,
   endIcon,
+  noLabel,
   ...props
 }: TextFieldProps) {
   const {colors} = useTheme();
   return (
     <View style={TextFieldStyles.TextField}>
       <View style={labelStyle || TextFieldStyles.label}>
-        <Text
-          style={{color: error ? TextFieldStyles.error.color : colors.text}}>
-          {label}
-        </Text>
+        {!noLabel && (
+          <Text
+            style={{color: error ? TextFieldStyles.error.color : colors.text}}>
+            {label}
+          </Text>
+        )}
       </View>
       <View
         style={[

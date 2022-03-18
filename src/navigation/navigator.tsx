@@ -3,15 +3,12 @@ import {useEffect} from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 
 import {DarkApplicationTheme} from '../theme';
-import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {AuthenticationNavigator} from './AuthenticationNavigator/Authentication.navigator';
 import {StatusBar} from 'react-native';
 import {useDispatch} from 'react-redux';
 import {initializeAuth, selectHasToken} from '../store/modules/auth';
 import {useAppSelector} from '../store/hook';
-import {CatalogScreen} from '../screens/catalog';
-
-const Tab = createBottomTabNavigator();
+import {ApplicationNavigator} from './ApplicationNavigator/ApplicationNavigator';
 
 export default function Navigation() {
   const dispatch = useDispatch();
@@ -26,13 +23,7 @@ export default function Navigation() {
     <>
       <StatusBar barStyle="light-content" />
       <NavigationContainer theme={DarkApplicationTheme}>
-        {isLogged ? (
-          <Tab.Navigator>
-            <Tab.Screen name="Home" component={CatalogScreen} />
-          </Tab.Navigator>
-        ) : (
-          <AuthenticationNavigator />
-        )}
+        {isLogged ? <ApplicationNavigator /> : <AuthenticationNavigator />}
       </NavigationContainer>
     </>
   );
