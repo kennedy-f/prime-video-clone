@@ -29,7 +29,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 24,
-    backgroundColor: 'rgba(91,91,91,0.4)',
   },
   background: {
     backgroundColor: '#1e2028',
@@ -48,7 +47,7 @@ const styles = StyleSheet.create({
     borderBottomColor: '#3c3c3c',
   },
   optionText: {
-    fontFamily: 'Poppins',
+    fontFamily: 'Poppins-Black',
     color: '#fff',
     fontSize: 16,
     fontWeight: 'bold',
@@ -78,7 +77,7 @@ export function MovieOptionsModal({
   }, []);
 
   const handleClose = () => {
-    console.log('handleClose');
+    bottomSheetRef?.current?.close();
     onClose();
   };
 
@@ -96,7 +95,19 @@ export function MovieOptionsModal({
               onClose={handleClose}
               handleIndicatorStyle={{backgroundColor: 'white'}}
               handleStyle={{backgroundColor: '#193241'}}
-              backgroundStyle={styles.background}>
+              backgroundStyle={styles.background}
+              backdropComponent={props => (
+                <View {...props}>
+                  <Pressable
+                    style={{flex: 1}}
+                    onPress={() => {
+                      bottomSheetRef?.current?.close();
+                      setIndex(-1);
+                    }}>
+                    <Text> aaa</Text>
+                  </Pressable>
+                </View>
+              )}>
               <ScrollView style={styles.contentContainer}>
                 <Option onPress={() => Alert.alert('teste')} label={'Save'} />
                 <Option

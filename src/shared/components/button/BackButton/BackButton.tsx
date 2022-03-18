@@ -1,6 +1,7 @@
 import React from 'react';
-import {Dimensions, Pressable, Text, View} from 'react-native';
+import {Dimensions, Pressable, View} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
+import Icon from 'react-native-vector-icons/Ionicons';
 
 const {height} = Dimensions.get('window');
 
@@ -21,7 +22,7 @@ export function BackButton() {
   return (
     <View style={styles.container}>
       <Pressable onPress={goBack}>
-        <Text style={styles.text}>{'<'}</Text>
+        <Icon name="arrow-back-outline" style={styles.text} />
       </Pressable>
     </View>
   );
