@@ -37,6 +37,7 @@ export function MovieSlider({data, category}: MovieSliderProps) {
         data={data}
         pagingEnabled={true}
         keyExtractor={item => String(item.id)}
+        showsHorizontalScrollIndicator={false}
         renderItem={({index, item}) => (
           <MovieCard movieData={item as TempMovie} {...{index, x}} />
         )}
