@@ -6,6 +6,7 @@ import {
   Image,
   SafeAreaView,
   ScrollView,
+  StyleSheet,
 } from 'react-native';
 import {MovieSlider} from '../../modules/Catalog';
 
@@ -17,6 +18,32 @@ interface TempMovie {
 
 const {width} = Dimensions.get('window');
 const TITLE_HEIGHT = 50;
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+  titleContainer: {
+    height: TITLE_HEIGHT,
+    position: 'static',
+  },
+  title: {
+    color: '#fff',
+    fontSize: 16,
+    textAlign: 'center',
+  },
+  bannerContainer: {
+    justifyContent: 'center',
+    justifyItens: 'center',
+    paddingHorizontal: 25,
+  },
+  banner: {
+    width: width - 50,
+    height: 200,
+    marginBottom: 30,
+    borderRadius: 20,
+  },
+});
 
 export function CatalogScreen() {
   const generateMovies = (numberOfData: number): TempMovie[] => {
@@ -33,53 +60,22 @@ export function CatalogScreen() {
   const data = generateMovies(15);
 
   return (
-    <SafeAreaView style={{flex: 1}}>
-      <View
-        style={{
-          height: TITLE_HEIGHT,
-          position: 'static',
-        }}>
-        <Text
-          style={{
-            color: '#fff',
-            fontSize: 16,
-            textAlign: 'center',
-          }}>
-          Prime video
-        </Text>
+    <SafeAreaView style={styles.container}>
+      <View style={styles.titleContainer}>
+        <Text style={styles.title}>Prime video</Text>
       </View>
       <ScrollView>
         <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-          <View
-            style={{
-              justifyContent: 'center',
-              justifyItens: 'center',
-              paddingHorizontal: 25,
-            }}>
+          <View style={styles.bannerContainer}>
             <Image
               source={{uri: 'https://picsum.photos/500/300'}}
-              style={{
-                width: width - 50,
-                height: 200,
-                marginBottom: 30,
-                borderRadius: 20,
-              }}
+              style={styles.banner}
             />
           </View>
-          <View
-            style={{
-              justifyContent: 'center',
-              justifyItens: 'center',
-              paddingHorizontal: 25,
-            }}>
+          <View style={styles.bannerContainer}>
             <Image
               source={{uri: 'https://picsum.photos/500/300'}}
-              style={{
-                width: width - 50,
-                height: 200,
-                marginBottom: 50,
-                borderRadius: 20,
-              }}
+              style={styles.banner}
             />
           </View>
         </ScrollView>

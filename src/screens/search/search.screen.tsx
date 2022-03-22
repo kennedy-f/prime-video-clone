@@ -1,16 +1,18 @@
 import React from 'react';
-import {View} from 'react-native';
+import {View, SafeAreaView} from 'react-native';
 import {TextField} from '../../shared/components/TextField';
 
 export function SearchScreen() {
   return (
-    <View>
-      <TextField
-        label={'Search'}
-        noLabel
-        placeholder="Search"
-        placeholderTextColor={'#fff'}
-      />
-    </View>
+    <SafeAreaView>
+      <View>
+        <TextField
+          label={'Search'}
+          noLabel
+          placeholder="Search"
+          placeholderTextColor={'#fff'}
+        />
+      </View>
+    </SafeAreaView>
   );
 }
