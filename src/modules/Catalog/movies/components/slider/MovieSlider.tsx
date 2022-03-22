@@ -41,7 +41,7 @@ export function MovieSlider({data, category}: MovieSliderProps) {
   };
 
   return (
-    <View>
+    <View style={{paddingVertical: 10}}>
       <Text style={styles.categoryTitle}> {category} </Text>
       <Animated.FlatList
         horizontal

@@ -1,15 +1,6 @@
 import React, {useState} from 'react';
-import {
-  Animated,
-  Dimensions,
-  Image,
-  Pressable,
-  StyleSheet,
-  Text,
-  View,
-} from 'react-native';
+import {Animated, Image, Pressable, StyleSheet, Text, View} from 'react-native';
 import {TempMovie} from '../slider';
-import {MovieOptionsModal} from '../modals/MovieOptionsModal';
 
 const MOVIE_WIDTH = 150;
 const MARGIN_HORIZONTAL = 5;
@@ -19,7 +10,6 @@ const styles = StyleSheet.create({
   movieContainer: {
     width: MOVIE_WIDTH,
     height: 100,
-    backgroundColor: '#f00',
     marginHorizontal: MARGIN_HORIZONTAL / 2,
     position: 'relative',
     display: 'flex',

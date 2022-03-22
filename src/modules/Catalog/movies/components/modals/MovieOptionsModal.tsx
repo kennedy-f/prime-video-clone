@@ -69,7 +69,7 @@ export function MovieOptionsModal({
 }: MovieOptionsModalProps) {
   const bottomSheetRef = useRef<BottomSheet>(null);
 
-  const snapPoints = useMemo(() => ['30%', '60%'], []);
+  const snapPoints = useMemo(() => ['30%', '45%'], []);
   const [index, setIndex] = useState(0);
 
   const handleSheetChanges = useCallback((newIndex: number) => {
@@ -109,7 +109,23 @@ export function MovieOptionsModal({
                 </View>
               )}>
               <ScrollView style={styles.contentContainer}>
-                <Option onPress={() => Alert.alert('teste')} label={'Save'} />
+                <Option onPress={() => Alert.alert('teste')} label={'Watch'} />
+                <Option
+                  onPress={() => Alert.alert('teste')}
+                  label={'Episodes and more'}
+                />
+                <Option
+                  onPress={() => Alert.alert('teste')}
+                  label={'Language and legends'}
+                />
+                <Option
+                  onPress={() => Alert.alert('teste')}
+                  label={'Credits and info'}
+                />
+                <Option
+                  onPress={() => Alert.alert('teste')}
+                  label={'Related shows'}
+                />
                 <Option
                   onPress={() => Alert.alert('teste')}
                   label={'Add to wathclist'}
