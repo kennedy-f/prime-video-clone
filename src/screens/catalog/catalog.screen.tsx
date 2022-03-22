@@ -30,7 +30,7 @@ export function CatalogScreen() {
       };
     });
   };
-  const data = generateMovies(30);
+  const data = generateMovies(15);
 
   return (
     <SafeAreaView style={{flex: 1}}>
@@ -84,13 +84,12 @@ export function CatalogScreen() {
           </View>
         </ScrollView>
         <MovieSlider data={data} category={'Action'} />
-        <MovieSlider data={data} category={'Action'} />
-        <MovieSlider data={data} category={'Action'} />
-        <MovieSlider data={data} category={'Action'} />
-        <MovieSlider data={data} category={'Action'} />
+        <MovieSlider data={data} category={'Romance'} />
+        <MovieSlider data={data} category={'Comedy'} />
+        <MovieSlider data={data} category={'Drama'} />
+        <MovieSlider data={data} category={'Animes'} />
 
-        <MovieSlider data={data} category={'Action'} />
-        <MovieSlider data={data} category={'Action'} />
+        <MovieSlider data={data} category={'Surprise-me'} />
       </ScrollView>
     </SafeAreaView>
   );
