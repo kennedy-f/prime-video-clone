@@ -46,7 +46,7 @@ export function WelcomeScreen() {
   };
 
   const handlePressSignUp = () => {
-    // TODO: navigate to sign up screen
+    navigate('SignUp');
   };
 
   return (

@@ -11,7 +11,7 @@ import {
 import {useTheme} from '@react-navigation/native';
 import {DarkApplicationTheme} from '../../../theme';
 
-interface TextFieldProps extends TextInputProps {
+export interface TextFieldProps extends TextInputProps {
   label: string;
   labelStyle?: ViewStyle;
   error?: string;
@@ -61,6 +61,7 @@ export function TextField({
               color: error ? TextFieldStyles.error.color : colors.text,
             },
           ]}
+          placeholderTextColor={'#757575'}
           {...props}
         />
         {endIcon && (

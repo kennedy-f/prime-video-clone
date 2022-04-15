@@ -1,5 +1,5 @@
 import React from 'react';
-import {View} from 'react-native';
+import {SafeAreaView, View} from 'react-native';
 import {UIButton} from '../../shared';
 import {useDispatch} from 'react-redux';
 import {makeLogout} from '../../store/modules/auth';
@@ -14,8 +14,10 @@ export function SettingsScreen() {
   };
 
   return (
-    <View>
-      <UIButton onPress={handleLogout}>Logout</UIButton>
-    </View>
+    <SafeAreaView>
+      <View>
+        <UIButton onPress={handleLogout}>Logout</UIButton>
+      </View>
+    </SafeAreaView>
   );
 }

@@ -21,7 +21,7 @@ export interface LoginData {
 
 type LoginFormProps = FormProps<LoginData>;
 
-export function LoginForm(props: LoginFormProps) {
+export function LoginForm({onComplete}: LoginFormProps) {
   const {values, handleChange, handleSubmit, errors, touched, handleBlur} =
     useFormik({
       initialValues: {
@@ -30,7 +30,7 @@ export function LoginForm(props: LoginFormProps) {
       },
       validationSchema: LoginFormSchema,
       onSubmit: fields => {
-        props.onComplete(fields);
+        onComplete(fields);
       },
     });
 

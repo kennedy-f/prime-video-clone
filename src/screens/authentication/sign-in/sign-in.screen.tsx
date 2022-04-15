@@ -1,11 +1,11 @@
 import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 
-import {LoginData, LoginForm} from '../../modules/Authentication';
-import {useAppDispatch} from '../../store/hook';
-import {makeLogin} from '../../store/modules/auth';
-import {AppContainer} from '../../shared/components/AppContainer';
-import {BackButton} from '../../shared/components/button/BackButton/BackButton';
+import {LoginData, LoginForm} from '../../../modules/Authentication';
+import {useAppDispatch} from '../../../store/hook';
+import {makeLogin} from '../../../store/modules/auth';
+import {AppContainer} from '../../../shared/components/AppContainer';
+import {BackButton} from '../../../shared/components/button/BackButton/BackButton';
 
 const styles = StyleSheet.create({
   title: {
@@ -22,11 +22,11 @@ const styles = StyleSheet.create({
 });
 
 const localLogin = {
-  email: 'teste@app.com',
-  password: 'teste@app',
+  email: 'test@app.com',
+  password: 'test@app',
 };
 
-export function LoginScreen() {
+export function SignInScreen() {
   const dispatch = useAppDispatch();
   const handleLogin = (login: LoginData) => {
     if (

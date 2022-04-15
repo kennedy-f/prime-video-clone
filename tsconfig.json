@@ -59,9 +59,8 @@
     // "preserveSymlinks": true,              /* Do not resolve the real path of symlinks. */
     "skipLibCheck": true,
     /* Skip type checking of declaration files. */
-    "resolveJsonModule": true
+    "resolveJsonModule": true,
     /* Allows importing modules with a ‘.json’ extension, which is a common practice in node projects. */
-
     "baseUrl": "./src"
     /* Source Map Options */
     // "sourceRoot": "./",                    /* Specify the location where debugger should locate TypeScript files instead of source locations. */
