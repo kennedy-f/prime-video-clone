@@ -38,7 +38,6 @@ export function SignUpForm() {
         value={values.email}
         onChangeText={handleChange('email')}
         label={'Email'}
-        placeholder={'Email'}
         keyboardType={'email-address'}
         autoCapitalize={'none'}
         textContentType={'emailAddress'}
@@ -51,7 +50,6 @@ export function SignUpForm() {
         onChangeText={handleChange('password')}
         secureTextEntry={true}
         label={'Password'}
-        placeholder={'Password'}
         keyboardType={'default'}
         autoCapitalize={'none'}
         textContentType={'password'}
@@ -66,7 +64,6 @@ export function SignUpForm() {
         onChangeText={handleChange('confirmPassword')}
         secureTextEntry={true}
         label={'Confirm password'}
-        placeholder={'Confirm Password'}
         keyboardType={'default'}
         autoCapitalize={'none'}
         textContentType={'password'}

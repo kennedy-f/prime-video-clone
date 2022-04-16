@@ -1,10 +1,9 @@
 import React from 'react';
-import {TextField} from '../../../../shared/components/TextField';
 import {StyleSheet, TouchableOpacity, View} from 'react-native';
 import {UIButton} from '../../../../shared';
 import {useFormik} from 'formik';
 import * as yup from 'yup';
-import {FormProps} from '../../../../shared/components/form';
+import {FormProps, TextField} from '../../../../shared/components';
 
 import {Icon} from 'react-native-eva-icons';
 import {useTheme} from '@react-navigation/native';
@@ -47,7 +46,6 @@ export function LoginForm({onComplete}: LoginFormProps) {
         label={'Email'}
         value={values.email}
         onChangeText={handleChange('email')}
-        placeholder={'example@email.com'}
         keyboardType={'email-address'}
         textContentType={'emailAddress'}
         onBlur={handleBlur('email')}
@@ -59,7 +57,6 @@ export function LoginForm({onComplete}: LoginFormProps) {
         value={values.password}
         onBlur={handleBlur('password')}
         onChangeText={handleChange('password')}
-        placeholder={'password'}
         secureTextEntry={seePassword}
         textContentType={'password'}
         endIcon={

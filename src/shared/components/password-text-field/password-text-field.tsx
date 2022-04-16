@@ -31,7 +31,6 @@ export function PasswordTextField({
   return (
     <View style={Styles.container}>
       <TextField
-        placeholder="Password"
         endIcon={
           <TouchableOpacity onPress={toggleShowPassword}>
             <Icon
