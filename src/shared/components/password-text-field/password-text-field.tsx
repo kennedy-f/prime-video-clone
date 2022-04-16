@@ -5,13 +5,12 @@ import {Icon} from 'react-native-eva-icons';
 import {useTheme} from '@react-navigation/native';
 
 interface PasswordTextFieldProps extends TextFieldProps {
-  showPassword: boolean;
-  toggleShowPassword: () => void;
+  showPassword?: boolean;
+  toggleShowPassword?: () => void;
 }
 
 const Styles = StyleSheet.create({
   container: {
-    paddingBottom: 16,
     position: 'relative',
   },
   password: {

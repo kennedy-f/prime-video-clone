@@ -1,9 +1,9 @@
 import React, {useState} from 'react';
-import {TextField} from '../../../../shared/components/TextField';
+import {TextField} from '../../../../shared/components';
 import {useFormik} from 'formik';
 import {UIButton} from '../../../../shared';
 import {SignUpValidationSchema} from './sign-up.validation-schema';
-import {PasswordTextField} from '../../../../shared/components/password-text-field';
+import {PasswordTextField} from '../../../../shared/components';
 
 export function SignUpForm() {
   const {values, errors, handleSubmit, handleChange} = useFormik({
@@ -19,6 +19,7 @@ export function SignUpForm() {
 
   const [showPassword, setShowPassword] = useState(false);
   const toggleShowPassword = () => setShowPassword(!showPassword);
+
   return (
     <>
       <TextField
@@ -45,6 +46,18 @@ export function SignUpForm() {
         error={errors.password}
         showPassword={showPassword}
         toggleShowPassword={toggleShowPassword}
+      />
+      <TextField
+        value={values.password}
+        onChangeText={handleChange('password')}
+        secureTextEntry={true}
+        label={'repeat password'}
+        placeholder={'Repeat Password'}
+        keyboardType={'default'}
+        autoCapitalize={'none'}
+        textContentType={'password'}
+        autoComplete={'password'}
+        error={errors.password}
       />
       <UIButton onPress={handleSubmit} variant={'primary'}>
         complete
