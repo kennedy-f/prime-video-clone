@@ -28,14 +28,13 @@ export function TextField({
   startIcon,
   endIcon,
   noLabel,
-  placeholder,
   onBlur,
   onFocus,
   ...props
 }: TextFieldProps) {
   const {colors} = useTheme();
 
-  const [isFocused, setIsFocused] = useState(false);
+  const [isFocused, setIsFocused] = useState(!!props.value);
 
   const focusAnim = useRef(new Animated.Value(0)).current;
   const errorAnim = useRef(new Animated.Value(0)).current;
