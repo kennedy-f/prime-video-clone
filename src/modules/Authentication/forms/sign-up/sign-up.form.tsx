@@ -10,9 +10,14 @@ export function SignUpForm() {
     initialValues: {
       email: '',
       password: '',
+      confirmPassword: '',
     },
     validationSchema: SignUpValidationSchema,
     onSubmit: fields => {
+      if (fields.password !== fields.confirmPassword) {
+        console.log('Passwords do not match');
+      }
+
       console.log('submit', fields);
     },
   });
@@ -48,16 +53,16 @@ export function SignUpForm() {
         toggleShowPassword={toggleShowPassword}
       />
       <TextField
-        value={values.password}
-        onChangeText={handleChange('password')}
+        value={values.confirmPassword}
+        onChangeText={handleChange('confirmPassword')}
         secureTextEntry={true}
-        label={'repeat password'}
-        placeholder={'Repeat Password'}
+        label={'Confirm password'}
+        placeholder={'Confirm Password'}
         keyboardType={'default'}
         autoCapitalize={'none'}
         textContentType={'password'}
         autoComplete={'password'}
-        error={errors.password}
+        error={errors.confirmPassword}
       />
       <UIButton onPress={handleSubmit} variant={'primary'}>
         complete
