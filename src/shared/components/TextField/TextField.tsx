@@ -1,5 +1,6 @@
-import React from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import {
+  Animated,
   StyleSheet,
   Text,
   TextInput,
@@ -27,17 +28,62 @@ export function TextField({
   startIcon,
   endIcon,
   noLabel,
+  placeholder,
+  onBlur,
+  onFocus,
   ...props
 }: TextFieldProps) {
   const {colors} = useTheme();
+
+  const [isFocused, setIsFocused] = useState(false);
+
+  const focusAnim = useRef(new Animated.Value(0)).current;
+  const errorAnim = useRef(new Animated.Value(0)).current;
+
+  const handleIsFocused = (focused: boolean) => {
+    if (props.value) {
+      setIsFocused(true);
+      return;
+    }
+    setIsFocused(focused);
+  };
+
+  useEffect(() => {
+    Animated.timing(focusAnim, {
+      toValue: isFocused ? 1 : 0,
+      duration: 200,
+      useNativeDriver: false,
+    }).start();
+  }, [isFocused, focusAnim]);
+
+  useEffect(() => {
+    Animated.timing(errorAnim, {
+      toValue: error ? 1 : 0,
+      duration: 400,
+      useNativeDriver: false,
+    }).start();
+  }, [error, errorAnim]);
+
   return (
     <View style={TextFieldStyles.TextField}>
       <View style={labelStyle || TextFieldStyles.label}>
         {!noLabel && (
-          <Text
-            style={{color: error ? TextFieldStyles.error.color : colors.text}}>
+          <Animated.Text
+            style={[
+              {
+                top: focusAnim.interpolate({
+                  inputRange: [0, 1],
+                  outputRange: [36, 0],
+                }),
+                left: focusAnim.interpolate({
+                  inputRange: [0, 1],
+                  outputRange: [12, 0],
+                }),
+              },
+              {color: error ? TextFieldStyles.error.color : colors.text},
+            ]}>
             {label}
-          </Text>
+          </Animated.Text>
         )}
       </View>
       <View
@@ -62,6 +108,14 @@ export function TextField({
             },
           ]}
           placeholderTextColor={'#757575'}
+          onFocus={event => {
+            handleIsFocused(true);
+            onFocus?.(event);
+          }}
+          onBlur={event => {
+            handleIsFocused(false);
+            onBlur?.(event);
+          }}
           {...props}
         />
         {endIcon && (
@@ -76,13 +130,20 @@ export function TextField({
           </Text>
         )}
       </View>
-      {error && (
-        <View>
-          <Text style={[TextFieldStyles.error, TextFieldStyles.errorText]}>
-            {error}
-          </Text>
-        </View>
-      )}
+      <View>
+        <Animated.Text
+          style={[
+            TextFieldStyles.error,
+            {
+              color: errorAnim.interpolate({
+                inputRange: [0, 1],
+                outputRange: ['#234a67', '#f33737'],
+              }),
+            },
+          ]}>
+          {error}
+        </Animated.Text>
+      </View>
     </View>
   );
 }
@@ -120,8 +181,5 @@ const TextFieldStyles = StyleSheet.create({
   error: {
     color: '#f33737',
     borderColor: '#f33737',
-  },
-  errorText: {
-    marginVertical: 8,
   },
 });
